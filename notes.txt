@@ -1,0 +1,30 @@
+React State Patterns 
+Goals 
+    Pass event handlers down as props to child components 
+    Understand the key propr that React asks for when mapping over dasta 
+    Use the callback pattern for useSTate
+
+    Every time a piece of state changes ina  component, the entire function is run another time
+    Function can be run over and over and over again 
+
+    How does the initial value persist? 
+        const [num, setNum] = useState(0)
+        how does num persist? 
+
+        when we load the page, the initial value (0) is associated with the function, not the variable as the first piece of state
+        the next time the function runs, the page already recongizes that the useState value has changed. The page has stored the intial value and knows how to modify the value to match what we need
+
+    hook - const [num, setNum] = useState(0) - are always at the TOP of the function 
+
+Changing State
+    Always change the state using the second destructured value to useState() 
+        const [data, updater] = useState(initialValue)
+    During the intial render, the returned state is the same as the value passed as the first argument 
+    The setData function is used to update the state. It accepts a new state value and enqueues a re render of the component 
+
+Setting State Using State 
+    Sometimes your new state depends on the value of your previous state is 
+    If you new state depends on the previous state, you should use the callback pattern for useState 
+    The function returned by useState can acccept a callback function 
+    The callback is called when all ALREADY requested state changes HAVE FINISHED 
+    It is passed the state as an argument and should return a new state
